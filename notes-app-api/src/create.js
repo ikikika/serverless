@@ -9,7 +9,7 @@ export function main(event, context, callback) {
 
   const params = {
     TableName: "notes",
-    Items: {
+    Item: {
       userId: event.requestContext.identity.cognitoIdentityId,
       noteId: uuid.v1(),
       content: data.content,

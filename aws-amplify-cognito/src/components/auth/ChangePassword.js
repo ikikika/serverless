@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import FormErrors from "../FormErrors";
 import Validate from "../utility/FormValidation";
+import Auth from "@aws-amplify/auth";
 
 class ChangePassword extends Component {
   state = {
@@ -12,7 +13,7 @@ class ChangePassword extends Component {
       blankfield: false,
       passwordmatch: false
     }
-  }
+  };
 
   clearErrorState = () => {
     this.setState({
@@ -22,7 +23,7 @@ class ChangePassword extends Component {
         passwordmatch: false
       }
     });
-  }
+  };
 
   handleSubmit = async event => {
     event.preventDefault();
@@ -37,6 +38,23 @@ class ChangePassword extends Component {
     }
 
     // AWS Cognito integration here
+    try {
+      const user = await Auth.currentAuthenticatedUser();
+      console.log(user);
+      await Auth.changePassword(
+        user,
+        this.state.oldpassword,
+        this.state.newpassword
+      );
+      this.props.history.push("/changepasswordconfirmation");
+    } catch (error) {
+      let err = null;
+      !error.message ? (err = { message: error }) : (err = error);
+      this.setState({
+        errors: { ...this.state.errors, cognito: err }
+      });
+      console.log(err);
+    }
   };
 
   onInputChange = event => {
@@ -44,7 +62,7 @@ class ChangePassword extends Component {
       [event.target.id]: event.target.value
     });
     document.getElementById(event.target.id).classList.remove("is-danger");
-  }
+  };
 
   render() {
     return (
@@ -56,8 +74,8 @@ class ChangePassword extends Component {
           <form onSubmit={this.handleSubmit}>
             <div className="field">
               <p className="control has-icons-left">
-                <input 
-                  className="input" 
+                <input
+                  className="input"
                   type="password"
                   id="oldpassword"
                   placeholder="Old password"
@@ -65,7 +83,7 @@ class ChangePassword extends Component {
                   onChange={this.onInputChange}
                 />
                 <span className="icon is-small is-left">
-                  <i className="fas fa-lock"></i>
+                  <i className="fas fa-lock" />
                 </span>
               </p>
             </div>
@@ -80,7 +98,7 @@ class ChangePassword extends Component {
                   onChange={this.onInputChange}
                 />
                 <span className="icon is-small is-left">
-                  <i className="fas fa-lock"></i>
+                  <i className="fas fa-lock" />
                 </span>
               </p>
             </div>
@@ -95,7 +113,7 @@ class ChangePassword extends Component {
                   onChange={this.onInputChange}
                 />
                 <span className="icon is-small is-left">
-                  <i className="fas fa-lock"></i>
+                  <i className="fas fa-lock" />
                 </span>
               </p>
             </div>
@@ -106,9 +124,7 @@ class ChangePassword extends Component {
             </div>
             <div className="field">
               <p className="control">
-                <button className="button is-success">
-                  Change password
-                </button>
+                <button className="button is-success">Change password</button>
               </p>
             </div>
           </form>

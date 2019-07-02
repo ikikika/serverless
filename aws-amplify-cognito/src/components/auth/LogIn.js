@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import FormErrors from "../FormErrors";
 import Validate from "../utility/FormValidation";
 import Auth from "@aws-amplify/auth";
+import { Link } from "react-router-dom";
 
 class LogIn extends Component {
   state = {
@@ -98,7 +99,7 @@ class LogIn extends Component {
             </div>
             <div className="field">
               <p className="control">
-                <a href="/forgotpassword">Forgot password?</a>
+                <Link to="/forgotpassword">Forgot password?</Link>
               </p>
             </div>
             <div className="field">

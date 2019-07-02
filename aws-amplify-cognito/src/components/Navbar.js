@@ -18,14 +18,14 @@ export default class Navbar extends Component {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <a className="navbar-item" href="/">
+          <Link className="navbar-item" to="/">
             <img
               src="hexal-logo.png"
               width="112"
               height="28"
               alt="hexal logo"
             />
-          </a>
+          </Link>
         </div>
 
         <div id="navbarBasicExample" className="navbar-menu">

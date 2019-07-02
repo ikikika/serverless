@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import FormErrors from "../FormErrors";
 import Validate from "../utility/FormValidation";
-import { Auth } from "aws-amplify";
+import Auth from "@aws-amplify/auth";
 
 class Register extends Component {
   state = {
@@ -41,7 +41,8 @@ class Register extends Component {
     // AWS Cognito integration here
     const { username, email, password } = this.state;
     try {
-      const signUpResponse = await Auth.signUp({
+      // const signUpResponse =
+      await Auth.signUp({
         username,
         password,
         attributes: {

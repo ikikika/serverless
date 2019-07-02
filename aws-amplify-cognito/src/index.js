@@ -8,7 +8,7 @@ import Amplify from "aws-amplify";
 import config1 from "./config1";
 
 import * as serviceWorker from "./serviceWorker";
-import { config } from "aws-sdk/global";
+// import { config } from "aws-sdk/global";
 
 Amplify.configure({
   Auth: {

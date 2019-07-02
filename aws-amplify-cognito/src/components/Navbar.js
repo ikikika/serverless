@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Auth } from "aws-amplify";
+import Auth from "@aws-amplify/auth";
+import { Link, NavLink } from "react-router-dom";
 
 export default class Navbar extends Component {
   handleLogOut = async event => {
@@ -29,15 +30,15 @@ export default class Navbar extends Component {
 
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
-            <a href="/" className="navbar-item">
+            <NavLink to="/" className="navbar-item">
               Home
-            </a>
-            <a href="/products" className="navbar-item">
+            </NavLink>
+            <NavLink to="/products" className="navbar-item">
               Products
-            </a>
-            <a href="/admin" className="navbar-item">
+            </NavLink>
+            <NavLink to="/admin" className="navbar-item">
               Admin
-            </a>
+            </NavLink>
           </div>
 
           <div className="navbar-end">
@@ -50,22 +51,22 @@ export default class Navbar extends Component {
               <div className="buttons">
                 {!this.props.auth.isAuthenticated && (
                   <div>
-                    <a href="/register" className="button is-primary">
+                    <Link to="/register" className="button is-primary">
                       <strong>Register</strong>
-                    </a>
-                    <a href="/login" className="button is-light">
+                    </Link>
+                    <Link to="/login" className="button is-light">
                       Log in
-                    </a>
+                    </Link>
                   </div>
                 )}
                 {this.props.auth.isAuthenticated && (
-                  <a
-                    href="/"
+                  <Link
+                    to="/"
                     onClick={this.handleLogOut}
                     className="button is-light"
                   >
                     Log out
-                  </a>
+                  </Link>
                 )}
               </div>
             </div>

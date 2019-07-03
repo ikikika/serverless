@@ -17,6 +17,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import Auth from "@aws-amplify/auth";
 import Analytics from "@aws-amplify/analytics";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 library.add(faEdit);
 
 class App extends Component {
@@ -58,6 +59,7 @@ class App extends Component {
       setAuthStatus: this.setAuthStatus,
       setUser: this.setUser
     };
+    console.log(authProps);
     return (
       !this.state.isAuthenticating && (
         <div className="App">
@@ -75,11 +77,14 @@ class App extends Component {
                   path="/products"
                   render={props => <Products {...props} auth={authProps} />}
                 />
-                <Route
+
+                <ProtectedRoute
                   exact
                   path="/admin"
-                  render={props => <ProductAdmin {...props} auth={authProps} />}
+                  component={ProductAdmin}
+                  auth={authProps}
                 />
+
                 <Route
                   exact
                   path="/login"
@@ -104,19 +109,17 @@ class App extends Component {
                     <ForgotPasswordVerification {...props} auth={authProps} />
                   )}
                 />
-                <Route
+                <ProtectedRoute
                   exact
                   path="/changepassword"
-                  render={props => (
-                    <ChangePassword {...props} auth={authProps} />
-                  )}
+                  component={ChangePassword}
+                  auth={authProps}
                 />
-                <Route
+                <ProtectedRoute
                   exact
                   path="/changepasswordconfirmation"
-                  render={props => (
-                    <ChangePasswordConfirm {...props} auth={authProps} />
-                  )}
+                  component={ChangePasswordConfirm}
+                  auth={authProps}
                 />
                 <Route
                   exact

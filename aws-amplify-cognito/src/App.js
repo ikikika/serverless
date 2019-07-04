@@ -3,8 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
-import Products from "./components/Products";
-import ProductAdmin from "./components/ProductAdmin";
+import Projects from "./components/Projects";
 import LogIn from "./components/auth/LogIn";
 import Register from "./components/auth/Register";
 import ForgotPassword from "./components/auth/ForgotPassword";
@@ -18,6 +17,8 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import Auth from "@aws-amplify/auth";
 import Analytics from "@aws-amplify/analytics";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import UnprotectedRoute from "./components/auth/UnprotectedRoute";
+import ProjectStatus from "./components/ProjectStatus";
 library.add(faEdit);
 
 class App extends Component {
@@ -67,47 +68,40 @@ class App extends Component {
             <div>
               <Navbar auth={authProps} />
               <Switch>
-                <Route
+                <UnprotectedRoute
                   exact
                   path="/"
-                  render={props => <Home {...props} auth={authProps} />}
-                />
-                <Route
-                  exact
-                  path="/products"
-                  render={props => <Products {...props} auth={authProps} />}
-                />
-
-                <ProtectedRoute
-                  exact
-                  path="/admin"
-                  component={ProductAdmin}
+                  component={Home}
                   auth={authProps}
                 />
-
+                <UnprotectedRoute
+                  exact
+                  path="/projects"
+                  component={Projects}
+                  auth={authProps}
+                />
                 <Route
                   exact
                   path="/login"
                   render={props => <LogIn {...props} auth={authProps} />}
                 />
-                <Route
+                <UnprotectedRoute
                   exact
                   path="/register"
-                  render={props => <Register {...props} auth={authProps} />}
+                  component={Register}
+                  auth={authProps}
                 />
-                <Route
+                <UnprotectedRoute
                   exact
                   path="/forgotpassword"
-                  render={props => (
-                    <ForgotPassword {...props} auth={authProps} />
-                  )}
+                  component={ForgotPassword}
+                  auth={authProps}
                 />
-                <Route
+                <UnprotectedRoute
                   exact
                   path="/forgotpasswordverification"
-                  render={props => (
-                    <ForgotPasswordVerification {...props} auth={authProps} />
-                  )}
+                  component={ForgotPasswordVerification}
+                  auth={authProps}
                 />
                 <ProtectedRoute
                   exact
@@ -121,10 +115,17 @@ class App extends Component {
                   component={ChangePasswordConfirm}
                   auth={authProps}
                 />
-                <Route
+                <UnprotectedRoute
                   exact
                   path="/welcome"
-                  render={props => <Welcome {...props} auth={authProps} />}
+                  component={Welcome}
+                  auth={authProps}
+                />
+                <ProtectedRoute
+                  exact
+                  path="/projectstatus/:project_id"
+                  component={ProjectStatus}
+                  auth={authProps}
                 />
               </Switch>
               <Footer />

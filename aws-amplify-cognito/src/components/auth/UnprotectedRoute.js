@@ -9,12 +9,6 @@ export default ({
 }) => (
   <Route
     {...rest}
-    render={props =>
-      authProps.isAuthenticated ? (
-        <Component {...props} {...componentProps} />
-      ) : (
-        <Redirect to="/login" />
-      )
-    }
+    render={props => <Component {...props} {...componentProps} />}
   />
 );

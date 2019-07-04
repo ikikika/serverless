@@ -19,22 +19,17 @@ export default class Navbar extends Component {
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <Link className="navbar-item" to="/">
-            <img
-              src="hexal-logo.png"
-              width="112"
-              height="28"
-              alt="hexal logo"
-            />
+            <h1>A</h1>
+            <h2>ngel</h2>
+            <h1>H</h1>
+            <h2>ack</h2>
           </Link>
         </div>
 
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
-            <NavLink to="/" className="navbar-item">
-              Home
-            </NavLink>
-            <NavLink to="/products" className="navbar-item">
-              Products
+            <NavLink to="/projects" className="navbar-item">
+              Projects
             </NavLink>
             <NavLink to="/admin" className="navbar-item">
               Admin
@@ -51,7 +46,7 @@ export default class Navbar extends Component {
               <div className="buttons">
                 {!this.props.auth.isAuthenticated && (
                   <div>
-                    <Link to="/register" className="button is-primary">
+                    <Link to="/register" className="button is-dark">
                       <strong>Register</strong>
                     </Link>
                     <Link to="/login" className="button is-light">

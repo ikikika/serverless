@@ -8,7 +8,7 @@ export default function HomeContent() {
           <div className="card is-shady">
             <div className="card-content">
               <div className="content">
-                <h4>Energy conservation</h4>
+                <h4>Digital Work</h4>
                 <p>
                   Purus semper eget duis at tellus at urna condimentum mattis.
                   Non blandit massa enim nec. Integer enim neque volutpat ac
@@ -26,7 +26,7 @@ export default function HomeContent() {
           <div className="card is-shady">
             <div className="card-content">
               <div className="content">
-                <h4>Water conservation</h4>
+                <h4>Copywriting</h4>
                 <p>
                   Ut venenatis tellus in metus vulputate. Amet consectetur
                   adipiscing elit pellentesque. Sed arcu non odio euismod
@@ -44,7 +44,7 @@ export default function HomeContent() {
           <div className="card is-shady">
             <div className="card-content">
               <div className="content">
-                <h4>Solar energy</h4>
+                <h4>Graphics Design</h4>
                 <p>
                   Imperdiet dui accumsan sit amet nulla facilisi morbi. Fusce ut
                   placerat orci nulla pellentesque dignissim enim. Libero id
